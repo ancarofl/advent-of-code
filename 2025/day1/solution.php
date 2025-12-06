@@ -110,7 +110,10 @@ function solve_part2(string $input): int|string
             }
         }
 
-        $count += $fullTurns;
+        if ($fullTurns > 0) {
+            echo "Increase count by " . $fullTurns . " cuz of full turns" . "\n";
+            $count += $fullTurns;
+        }
     }
 
     return $count;
