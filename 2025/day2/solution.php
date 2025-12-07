@@ -54,3 +54,30 @@ function is_invalid_id(int $n): bool
 
     return true;
 }
+
+function solve_part2(string $input): int|string
+{
+    $result = 0;
+    foreach (explode(',', $input) as $range) {
+        [$start, $end] = array_map('intval', explode('-', $range));
+
+        echo "Start: $start. End: $end.\n";
+
+        for ($i = $start; $i <= $end; $i++) {
+            // echo $i . "\n";
+            if (is_invalid_id_part2($i)) {
+                echo "\033[31m$i is invalid.\033[0m\n";
+                $result += $i;
+            }
+        }
+    }
+
+    return $result;
+}
+
+function is_invalid_id_part2(int $n): bool
+{
+    $s = (string)$n;
+
+    return preg_match('/^(\d+)\1+$/', $s) === 1;
+}
