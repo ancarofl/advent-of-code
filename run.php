@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-// Usage: php run.php <year> <day> [part]. Eg: php run.php 2025 or php run.php 2025 2
+// Usage: php run.php <year> <day> [part]. [Part] defaults to 1. Eg: php run.php 2025 1 or php run.php 2025 1 2
 
 // Parse arguments
 $year = $argv[1];
