@@ -15,8 +15,6 @@ function solve_part1(string $input): int|string
             if (is_invalid_id($i)) {
                 echo "\033[31m$i is invalid.\033[0m\n";
                 $result += $i;
-            } else {
-                echo "$i is valid.\n";
             }
         }
     }
@@ -26,7 +24,6 @@ function solve_part1(string $input): int|string
 
 function is_invalid_id(int $n): bool
 {
-    $nCopy  = $n;
     $digits = [];
 
     while ($n != 0) {
@@ -34,7 +31,7 @@ function is_invalid_id(int $n): bool
         $n        = intdiv($n, 10);
     }
 
-    echo "Digits are [" . implode(", ", $digits) . "]\n";
+    # echo "Digits are [" . implode(", ", $digits) . "]\n";
 
     $numberOfDigits = count($digits);
 
@@ -48,7 +45,7 @@ function is_invalid_id(int $n): bool
 
     for ($i = 0; $i < $mid; $i++) {
         $j = $i + $mid;
-        echo "Comparing $digits[$i] to $digits[$j]\n";
+        # echo "Comparing $digits[$i] to $digits[$j]\n";
         if ($digits[$i] != $digits[$j]) {
             return false;
         }
