@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function solve_part1(string $input): int|string
+function solve_part1(string $input): int
 {
     $result = 0;
 
@@ -48,7 +48,7 @@ function solve_part1(string $input): int|string
     return $result;
 }
 
-function solve_part2(string $input): int|string
+function solve_part2(string $input): int
 {
     $result = 0;
 

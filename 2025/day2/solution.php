@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function solve_part1(string $input): int|string
+function solve_part1(string $input): int
 {
     $result = 0;
     foreach (explode(',', $input) as $range) {
@@ -55,7 +55,7 @@ function is_invalid_id(int $n): bool
     return true;
 }
 
-function solve_part2(string $input): int|string
+function solve_part2(string $input): int
 {
     $result = 0;
     foreach (explode(',', $input) as $range) {
