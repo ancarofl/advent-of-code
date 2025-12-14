@@ -68,3 +68,85 @@ function solve_part1(string $input): int
 
 	return $result;
 }
+
+function solve_part2(string $input): int
+{
+	$result = 0;
+
+	$matrix = [];
+	$newMatrix = [];
+	$rows = 0;
+	$cols = 0;
+
+	foreach (explode("\n", $input) as $r => $line) {
+		$line = rtrim($line, "\r");
+
+		$rows++;
+		$cols = max($cols, strlen($line));
+
+		for ($c = 0; $c < strlen($line); $c++) {
+			$matrix[$r][$c] = ($line[$c] === '@') ? 1 : 0;
+		}
+	}
+
+	$removable = true;
+
+	while ($removable) {
+		$removed = 0;
+
+		for ($i = 0; $i < $rows; $i++) {
+			for ($j = 0; $j < $cols; $j++) {
+				$newMatrix[$i][$j] = $matrix[$i][$j];
+
+				$count = 0;
+
+				if ($matrix[$i][$j] === 0) {
+					continue;
+				}
+
+				// 8 neighbours
+				if (isset($matrix[$i - 1][$j - 1])) {
+					if ($matrix[$i - 1][$j - 1] === 1) $count++;
+				}
+				if (isset($matrix[$i - 1][$j])) {
+					if ($matrix[$i - 1][$j] === 1) $count++;
+				}
+				if (isset($matrix[$i - 1][$j + 1])) {
+					if ($matrix[$i - 1][$j + 1] === 1) $count++;
+				}
+
+				if (isset($matrix[$i][$j - 1])) {
+					if ($matrix[$i][$j - 1] === 1) $count++;
+				}
+				if (isset($matrix[$i][$j + 1])) {
+					if ($matrix[$i][$j + 1] === 1) $count++;
+				}
+
+				if (isset($matrix[$i + 1][$j - 1])) {
+					if ($matrix[$i + 1][$j - 1] === 1) $count++;
+				}
+				if (isset($matrix[$i + 1][$j])) {
+					if ($matrix[$i + 1][$j] === 1) $count++;
+				}
+				if (isset($matrix[$i + 1][$j + 1])) {
+					if ($matrix[$i + 1][$j + 1] === 1) $count++;
+				}
+
+				if ($count < 4) {
+					# echo "Removed at " . $i . " ; " . $j . "\n";
+					$newMatrix[$i][$j] = 0;
+					$removed++;
+					$result++;
+				}
+			}
+		}
+
+		$matrix = $newMatrix;
+
+		if ($removed === 0) {
+			$removable = false;
+		}
+	}
+
+	return $result;
+}
