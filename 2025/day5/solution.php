@@ -39,3 +39,31 @@ function solve_part1(string $input): int
 
 	return $result;
 }
+
+function solve_part2(string $input): int
+{
+	$array = [];
+
+	$stopChecking = false;
+
+	foreach (explode("\n", $input) as $line) {
+		$line = rtrim($line, "\r");
+
+		if ($stopChecking === false) {
+			if ($line != "") {
+				[$start, $end] = array_map('intval', explode('-', $line));
+
+				for ($i = $start; $i <= $end; $i++) {
+					if (!in_array($i, $array)) {
+						# echo $i . "\n";
+						$array[] = $i;
+					}
+				}
+			} else {
+				$stopChecking = true;
+			}
+		}
+	}
+
+	return count($array);
+}
